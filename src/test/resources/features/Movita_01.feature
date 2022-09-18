@@ -1,3 +1,4 @@
+@parametre
 Feature: Movita_01
   Scenario: User tests Movita logo and dropdown menu
  Given User navigates to "movita" page

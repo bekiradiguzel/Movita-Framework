@@ -56,7 +56,7 @@ public class ReusableMethods {
     //========Hover Over=====//
     public static void hover(WebElement element) {
         Actions actions = new Actions(Driver.getDriver());
-        actions.moveToElement(element).perform();
+        actions.moveToElement(element).build();
     }
 
     //==========Return a list of string given a list of Web Element====////

@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class MovitaStepDefinitions {
 
-    MovitaPage movita = new MovitaPage();
+    MovitaPage movita= new MovitaPage();
     WebElement dropdownMenubutton;
     Select select;
 
@@ -190,5 +190,259 @@ String s=movita.rota_optimizasyon.getText();
         Assert.assertEquals(expected,actual);
 
     }
+    @Given("kullanici movita sayfasına gider")
+    public void kullanici_movita_sayfasına_gider() {
+        Driver.getDriver().get(ConfigurationReader.getProperty("movita"));
+    }
+    @Then("kullanici movita anasayfada oldugunu dogrular")
+    public void kullanici_movita_anasayfada_oldugunu_dogrular() {
+        String expected="GİRİŞ YAP";
+        String actual=movita.giris.getText();
+        Assert.assertEquals(expected,actual);
+    }
+    @Then("kullanici movita logosu üzerine hoverover yapar")
+    public void kullanici_movita_logosu_üzerine_hoverover_yapar() {
+      ReusableMethods.hover(movita.movitaLogo);
+    }
+    @Then("kullanici motita logosunun clickable olduğunu görür")
+    public void kullanici_motita_logosunun_clickable_olduğunu_görür() {
+       ReusableMethods.waitForClickablility(movita.movitaLogo,3000);
+    }
+    @Then("kullanici movita logosunu tiklar")
+    public void kullanici_movita_logosunu_tiklar() {
+        {
+            movita.movitaLogo.click();
+        }
+    }
+    @Then("kullanici ekranda verilen stringi verify eder")
+    public void kullanici_ekranda_verilen_stringi_verify_eder() {
+        ReusableMethods.waitForVisibility(movita.mainTextTurkish, 10);
+        Assert.assertTrue(movita.mainTextTurkish.isDisplayed());
+    }
+    @Then("kullanıcı ANASAYFA üzerinde hoverover yapar")
+    public void kullanıcı_anasayfa_üzerinde_hoverover_yapar() {
+    ReusableMethods.hover(movita.anasayfa_yazisi);
+    }
+    @Then("Kullanıcı ANASAYFA yazisinin renginin değiştiğini görür")
+    public void kullanıcı_anasayfa_yazisinin_renginin_değiştiğini_görür() {
+        String color_before=movita.anasayfa_yazisi.getCssValue("color");
+        String color_b_hex=Color.fromString(color_before).asHex();
+        ReusableMethods.hover(movita.anasayfa_yazisi);
+        String color_after=movita.anasayfa_yazisi.getCssValue("color");
+        String color_a_hex=Color.fromString(color_after).asHex();
+        Assert.assertTrue("color",true);
+
+    }
+    @Then("kullanici ANASAYFA yazisinin  clickable olduğunu görür")
+    public void kullanici_anasayfa_yazisinin_clickable_olduğunu_görür() {
+        ReusableMethods.waitForClickablility(movita.anasayfa_yazisi,3000);
+    }
+    @Then("Kullanıcı ANASAYFA yazisini tıklar")
+    public void kullanıcı_anasayfa_yazisini_tıklar() {
+     movita.anasayfa_yazisi.click();
+    }
+    @Then("kullanici Dil Tercihi Logosu üzerinde hoverover yapar")
+    public void kullanici_dil_tercihi_logosu_üzerinde_hoverover_yapar() {
+        ReusableMethods.hover(movita.dropdownMenubutton);
+    }
+    @Then("kullanici Dil Tercihi Logosu üzerine geldiğinde clickable oldugunu görür")
+    public void kullanici_dil_tercihi_logosu_üzerine_geldiğinde_clickable_oldugunu_görür() {
+       ReusableMethods.waitForClickablility(movita.dropdownMenubutton,3000);
+    }
+    @Then("kullanici Dil Tercihi Logosu tıklar")
+    public void kullanici_dil_tercihi_logosu_tıklar() {
+     movita.dropdownMenubutton.click();
+    }
+
+    @Then("kullanici Englisch secenegini tıklar")
+    public void kullanici_englisch_secenegini_tıklar() {
+
+        movita.logo_eng.click();
+    }
+    @Then("kullanici ekranda verilen ingilizce stringi görmelidir")
+    public void kullanici_ekranda_verilen_ingilizce_stringi_görmelidir()  {
+        WebElement txt=movita.englishstring;
+        System.out.println("txt = " + txt);
+
+    }
+    @Then("kullanici Türkçe yazisini tıklar")
+    public void kullanici_türkçe_yazisini_tıklar() {
+        movita.dropdownMenubutton.click();
+        movita.turkcebuton.click();
+    }
+    @Then("kullanici ekranda verilen Türkçe stringi görmelidir")
+    public void kullanici_ekranda_verilen_türkçe_stringi_görmelidir() {
+      WebElement txt1=movita.mainTextTurkish;
+        System.out.println("txt = " + txt1);
+
+    }
+
+
+
+    @Then("kullanıcı KURUMSAL yazisi üzerinde hoverover yapar")
+    public void kullanıcı_kurumsal_yazisi_üzerinde_hoverover_yapar() {
+    ReusableMethods.hover(movita.kurumsalAnaMenu);
+    }
+    @Then("kullanici KURUMSAL yazisinin clickable olduguu görür")
+    public void kullanici_kurumsal_yazisinin_clickable_olduguu_görür() {
+       ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+    }
+    @Then("kullaici tüm kurumsal alt seceneklerin üzerinde hoverover yapar")
+    public void kullaici_tüm_kurumsal_alt_seceneklerin_üzerinde_hoverover_yapar() {
+       ReusableMethods.hover(movita.kurumsalHakkimizda);
+       ReusableMethods.hover(movita.kurumsalBelgelerimiz);
+       ReusableMethods.hover(movita.kurumsalDemoBasvurusu);
+       ReusableMethods.hover(movita.kurumsalBayilikBasvurusu);
+       ReusableMethods.hover(movita.cerezPolitikasi);
+       ReusableMethods.hover(movita.kvkk);
+    }
+    @Then("kullanici cikan tüm kurumsal alt seceneklerin clickable oldugunu ve renk değistirdigini görür")
+    public void kullanici_cikan_tüm_kurumsal_alt_seceneklerin_clickable_oldugunu_ve_renk_değistirdigini_görür() {
+        ReusableMethods.waitForClickablility(movita.kurumsalHakkimizda,1000);
+        ReusableMethods.waitForClickablility(movita.kurumsalBelgelerimiz,1000);
+        ReusableMethods.waitForClickablility(movita.kurumsalDemoBasvurusu,1000);
+        ReusableMethods.waitForClickablility(movita.kurumsalBayilikBasvurusu,1000);
+        ReusableMethods.waitForClickablility(movita.cerezPolitikasi,1000);
+        ReusableMethods.waitForClickablility(movita.kvkk,1000);
+    }
+    @Then("kullanici tüm kurumsal alt secenekleri sirasiyla tıklar string ifadelerini dogrular")
+    public void kullanici_tüm_kurumsal_alt_secenekleri_sirasiyla_tıklar_string_ifadelerini_dogrular() {
+        ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+        movita.kurumsalHakkimizda.click();
+        String expected="HAKKIMIZDA";
+        String actual=movita.kurumsalHakString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+    movita.kurumsalBelgelerimiz.click();
+        String expected1="BELGELERİMİZ";
+        String actual1=movita.kurumsalBelString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+    movita.kurumsalDemoBasvurusu.click();
+        String expected2="DEMO BAŞVURU";
+        String actual2=movita.kurumsaldemoString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+    movita.kurumsalBayilikBasvurusu.click();
+        String expected3="BAYILIK BAŞVURU";
+        String actual3=movita.kurumsalBayiString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+    movita.cerezPolitikasi.click();
+        String expected4="ÇEREZ POLITIKASI";
+        String actual4=movita.kurumsalcerezString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.kurumsalAnaMenu,1000);
+    movita.kvkk.click();
+        String expected5="KİŞİSEL VERİLERİN İŞLENME POLİTİKASI";
+        String actual5=movita.kurumsalKvkkString.getText();
+        Assert.assertEquals(expected,actual);
+    }
+    @Then("kullanıcı ÇÖZÜMLER yazisi üzerinde hoverover yapar")
+    public void kullanıcı_çözümler_yazisi_üzerinde_hoverover_yapar() {
+      ReusableMethods.hover(movita.cozumlerMenu);
+    }
+    @Then("kullanici ÇÖZÜMLER yazisinin clickable olduguu görür")
+    public void kullanici_çözümler_yazisinin_clickable_olduguu_görür() {
+        ReusableMethods.waitForClickablility(movita.cozumlerMenu,1000);
+    }
+    @Then("kullaici tüm çözümler alt seceneklerin üzerinde hoverover yapar")
+    public void kullaici_tüm_çözümler_alt_seceneklerin_üzerinde_hoverover_yapar() {
+
+        ReusableMethods.hover(movita.okulServisleriTakipveKoltukSensorSistemleri);
+        ReusableMethods.hover(movita.kameraliAracTakipSistemi);
+        ReusableMethods.hover(movita.kisiBilgilendirmeSistemi);
+        ReusableMethods.hover(movita.kisiNesneVeHayvanTakipSistemi);
+    }
+    @Then("kullanici cikan tüm çözümler alt seceneklerin clickable oldugunu ve renk değistirdigini görür")
+    public void kullanici_cikan_tüm_çözümler_alt_seceneklerin_clickable_oldugunu_ve_renk_değistirdigini_görür() {
+        ReusableMethods.waitForClickablility(movita.okulServisleriTakipveKoltukSensorSistemleri,1000);
+        ReusableMethods.waitForClickablility(movita.kameraliAracTakipSistemi,1000);
+        ReusableMethods.waitForClickablility(movita.kisiBilgilendirmeSistemi,1000);
+        ReusableMethods.waitForClickablility(movita.kisiNesneVeHayvanTakipSistemi,1000);
+    }
+    @Then("kullanici tüm çözümler alt secenekleri sirasiyla tıklar string ifadelerini dogrular")
+    public void kullanici_tüm_çözümler_alt_secenekleri_sirasiyla_tıklar_string_ifadelerini_dogrular() {
+        ReusableMethods.waitForClickablility(movita.cozumlerMenu,1000);
+        movita.okulServisleriTakipveKoltukSensorSistemleri.click();
+        String expected="OKUL SERVIS ARAÇLARI TAKIP SISTEMI";
+        String actual=movita.cozumlerokulservisaracString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.cozumlerMenu,1000);
+        movita.kameraliAracTakipSistemi.click();
+        String expected1="KAMERALI ARAÇ TAKIP SISTEMI";
+        String actual1=movita.cozumlerKameraliaracTakipString.getText();
+        Assert.assertEquals(expected1,actual1);
+        ReusableMethods.waitForClickablility(movita.cozumlerMenu,1000);
+        movita.kisiBilgilendirmeSistemi.click();
+        String expected2="KIŞI BILGILENDIRME SISTEMI";
+        String actual2=movita.cozumlerKisibilgiString.getText();
+        Assert.assertEquals(expected2,actual2);
+        ReusableMethods.waitForClickablility(movita.cozumlerMenu,1000);
+        movita.kisiNesneVeHayvanTakipSistemi.click();
+        String expected3="KIŞI VE NESNE/HAYVAN TAKIP SISTEMI";
+        String actual3=movita.cozumlerKisiveNesneString.getText();
+        Assert.assertEquals(expected3,actual3);
+
+    }
+
+    @Then("kullanıcı ÜRÜNLER yazisi üzerinde hoverover yapar")
+    public void kullanıcı_ürünler_yazisi_üzerinde_hoverover_yapar() {
+        ReusableMethods.hover(movita.urunlerMenu);
+    }
+    @Then("kullanici ÜRÜNLER yazisinin clickable olduguu görür")
+    public void kullanici_ürünler_yazisinin_clickable_olduguu_görür() {
+        ReusableMethods.waitForClickablility(movita.urunlerMenu,1000);
+    }
+    @Then("kullaici tüm ürünler alt seceneklerin üzerinde hoverover yapar")
+    public void kullaici_tüm_ürünler_alt_seceneklerin_üzerinde_hoverover_yapar() {
+        ReusableMethods.hover(movita.mnvr);
+        ReusableMethods.hover(movita.mnvrPro);
+        ReusableMethods.hover(movita.aracTakipCihazi);
+        ReusableMethods.hover(movita.camTracker);
+        ReusableMethods.hover(movita.akilliDirekSistemi);
+    }
+    @Then("kullanici cikan tüm ürünler alt seceneklerin clickable oldugunu ve renk değistirdigini görür")
+    public void kullanici_cikan_tüm_ürünler_alt_seceneklerin_clickable_oldugunu_ve_renk_değistirdigini_görür() {
+        ReusableMethods.waitForClickablility(movita.mnvr,100);
+        ReusableMethods.waitForClickablility(movita.mnvrPro,100);
+        ReusableMethods.waitForClickablility(movita.aracTakipCihazi,100);
+        ReusableMethods.waitForClickablility(movita.camTracker,100);
+        ReusableMethods.waitForClickablility(movita.akilliDirekSistemi,100);
+
+    }
+    @Then("kullanici tüm ürünler alt secenekleri sirasiyla tıklar string ifadelerini dogrular")
+    public void kullanici_tüm_ürünler_alt_secenekleri_sirasiyla_tıklar_string_ifadelerini_dogrular() {
+        ReusableMethods.waitForClickablility(movita.urunlerMenu,1000);
+        movita.mnvr.click();
+        String expected="MNVR";
+        String actual=movita.urunlerMnvrString.getText();
+        Assert.assertEquals(expected,actual);
+        ReusableMethods.waitForClickablility(movita.urunlerMenu,1000);
+        movita.mnvrPro.click();
+        String expected12="MNVR Pro";
+        String actual12=movita.urunlerMnvrProString.getText();
+        Assert.assertEquals(expected12,actual12);
+        ReusableMethods.waitForClickablility(movita.urunlerMenu,1000);
+        movita.aracTakipCihazi.click();
+        String expected22="ARAÇ TAKIP CIHAZI";
+        String actual22=movita.urunleraracTakipcihaziString.getText();
+        Assert.assertEquals(expected22,actual22);
+        ReusableMethods.waitForClickablility(movita.urunlerMenu,1000);
+        movita.camTracker.click();
+        String expected32="ÜRÜNLER";
+        String actual32=movita.urunlerCamtrakerString.getText();
+        Assert.assertEquals(expected32,actual32);
+        ReusableMethods.waitForClickablility(movita.urunlerMenu,1000);
+        movita.akilliDirekSistemi.click();
+        String expected41="AKILLI DIREK SISTEMI";
+        String actual41=movita.urunlerAkillidirekString.getText();
+        Assert.assertEquals(expected41,actual41);
+
+    }
+
+
+
+
 
 }
