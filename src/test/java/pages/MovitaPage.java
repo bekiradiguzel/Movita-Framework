@@ -129,4 +129,24 @@ public class MovitaPage {
     public WebElement kisiNesneVeHayvanTakipSistemi;
     @FindBy(xpath = "//div/h1")
     public WebElement cozumlerKisiveNesneString;
+    @FindBy(xpath = "//h5[text()=\"Satır Kod\"]")
+    public WebElement satirKod900K;
+
+    @FindBy(xpath = "//h5[text()=\"Memnun Müşteri\"]")
+    public WebElement memnunMusteri1500;
+
+    @FindBy(xpath = "//h5[text()=\"Çözümler\"]")
+    public WebElement cozumler20;
+
+    @FindBy(xpath = "//h5[text()=\"5 Yıllık Deneyim\"]")
+    public WebElement yillikDeneyim5;
+
+    @FindBy(xpath = "//h2[text()=\"movita mobil vasıta izleme takip sistemi\"]")
+    public WebElement mobilMovitaText;
+
+    @FindBy(id = "gotoTop")
+    public WebElement arrow;
+
+    @FindBy(xpath = "//div[text()=\"Tüm Sektörlere Hitap Eden Çözümler\"]")
+    public WebElement hitapedencozümler;
 }
