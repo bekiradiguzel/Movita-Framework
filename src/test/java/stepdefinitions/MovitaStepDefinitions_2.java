@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
-public class MovitaStepDefinitions_2 {
+/*public class MovitaStepDefinitions_2 {
     MovitaPage movita = new MovitaPage();
     static WebDriver driver;
     static String mainPage = Driver.getDriver().getWindowHandle();
@@ -187,7 +187,10 @@ public void is_string_displayed() throws IOException {
 
 }
 
+
 }
+
+ */
 
 
 
