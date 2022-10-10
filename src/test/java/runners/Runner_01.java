@@ -5,11 +5,10 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features = "src/test/java/features",
+        features = "src/test/resources/features",
         glue = "stepdefinitions",
-        dryRun = false,
-        tags="@movita2"
-
+        tags="@mqa_6_1",
+        dryRun = false
 
 
 )

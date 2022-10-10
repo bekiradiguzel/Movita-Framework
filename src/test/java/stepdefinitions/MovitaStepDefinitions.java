@@ -6,14 +6,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.interactions.Actions;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import pages.MovitaPage;
 import utilities.ConfigurationReader;
 import utilities.Driver;
 import utilities.ReusableMethods;
-import org.openqa.selenium.support.Color;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import pages.MovitaPage;
 
 import java.util.Objects;
 
@@ -21,6 +22,9 @@ import java.util.Objects;
 public class MovitaStepDefinitions {
 
     MovitaPage movita = new MovitaPage();
+    WebElement dropdownMenubutton;
+    Select select;
+
 
     @Given("User navigates to {string} page")
     public void user_navigates_to_page(String homePage) {
@@ -54,6 +58,8 @@ public class MovitaStepDefinitions {
 
     }
 
+
+
     @And("clicks on the language button")
     public void user_clicks_on_the_Language_Button() {
         movita.dropdownMenubutton.click();
@@ -69,13 +75,19 @@ public class MovitaStepDefinitions {
     @And("Verify if Mobile Vehicle Traking System is displayed")
     public void verify_if_mobile_vehivle_traking_system_displayed(){
 
-        ReusableMethods.waitForVisibility(movita.mainTextEnglish, 10);
+        ReusableMethods.waitForVisibility(movita.mainTextEnglish, 5);
         Assert.assertTrue(movita.mainTextEnglish.isDisplayed());
+    }
+
+    @Then("clicks on Turkish on the dropdown menu")
+    public void clicksOnTurkishOnButton() {
+        ReusableMethods.waitForVisibility(movita.logo_turk,5);
+        movita.logo_turk.click();
     }
     @Then("user hovers over rota_optimizasyon and verifies color change")
     public void hover_over_rota_optimizasyon(){
-       String color_before= movita.rota_optimizasyon.getCssValue("color");
-       String color_b_hex=Color.fromString(color_before).asHex();
+        String color_before= movita.rota_optimizasyon.getCssValue("color");
+        String color_b_hex=Color.fromString(color_before).asHex();
 
         ReusableMethods.hover(movita.rota_optimizasyon);
 
@@ -94,7 +106,7 @@ public class MovitaStepDefinitions {
     @Then("user verifies rota string")
     public void verify_string(){
         String expected_rota_text="ROTA OPTIMIZASYONU";
-String s=movita.rota_optimizasyon.getText();
+        String s=movita.rota_optimizasyon.getText();
         Assert.assertEquals(expected_rota_text,s);
 
     }
@@ -185,8 +197,19 @@ String s=movita.rota_optimizasyon.getText();
         String actual=movita.giris.getText();
         Assert.assertEquals(expected,actual);
 
-
     }
 
 
+    @Then("some_wait")
+    public void some_wait() {
+        ReusableMethods.waitFor(3);
+    }
+
+
+    @And("User hover over Dropdown on the right corner to switch languagetr")
+        public void user_clicks_forTurkish() {
+        ReusableMethods.hover(movita.logo_turk);
+
+
+    }
 }

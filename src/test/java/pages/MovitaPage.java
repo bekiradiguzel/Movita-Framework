@@ -31,8 +31,13 @@ public class MovitaPage {
     @FindBy(xpath = "//a[@class=\"dropdown-item\"]")
     public WebElement logo_eng;
 
-    @FindBy(xpath = "//div[@id=\"layer-713898396\"]")
+    @FindBy(xpath = "//a[@src=\"/app-assets/images/lang/turkFlag.png\"]")
+    public WebElement logo_turk;
+
+    @FindBy(xpath = "//div[@id=\"layer-126085703\"]")
     public WebElement mainTextEnglish;
+
+
 
     @FindBy(xpath = "//*[@href=\"/rota_optimizasyonu\"][1]")
     public WebElement rota_optimizasyon;
@@ -48,29 +53,6 @@ public class MovitaPage {
 
     @FindBy(xpath = "//*[@href=\"/login\"]")
     public WebElement giris;
-
-    @FindBy(xpath = "//*[@id=\"gotoTop\"]")
-    public WebElement arrow;
-
-    @FindBy(xpath = "//*[@href=\"/bayi_basvuru\"][1]")
-    public WebElement bayilik_basvurusu;
-
-    @FindBy(xpath = "//*[@class=\"button button-3d button-dark button-large \"]")
-    public WebElement bayi;
-
-    @FindBy(tagName = "h1")
-    public WebElement bayi_baslik;
-
-    @FindBy(xpath = "//*[@class=\"button button-3d button-large \"]")
-    public WebElement demo;
-
-
-    @FindBy(tagName = "h1")
-    public WebElement demo_baslik;
-
-    @FindBy(xpath = "//div[text()=\"Tüm Sektörlere Hitap Eden Çözümler\"][1]")
-
-    public WebElement tum_sektorler;
 
 
 }
